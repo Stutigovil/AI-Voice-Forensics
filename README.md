@@ -249,8 +249,6 @@ Contributions welcome! Please open an issue or submit a PR.
 
 ---
 
-## 📝 Resume Statement
 
-> Built a multimodal AI voice authenticity detection system combining speech-to-text linguistic analysis, LightGBM classification, and LLM-powered RAG explanations for forensic interpretability.
 
 **Skills demonstrated:** ML, NLP, Speech Processing, LLMs, RAG, API Development
