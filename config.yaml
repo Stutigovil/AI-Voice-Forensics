@@ -1,0 +1,70 @@
+# AI Voice Detection Configuration
+# ================================
+
+# Whisper STT Configuration
+whisper:
+  model_size: "base"  # Options: tiny, base, small, medium, large
+  language: "en"
+  device: "cpu"  # or "cuda" for GPU
+  
+# Audio Processing
+audio:
+  sample_rate: 16000
+  max_duration: 60  # seconds
+  supported_formats: [".wav", ".mp3", ".flac", ".m4a", ".ogg"]
+
+# Feature Extraction
+features:
+  audio:
+    n_mfcc: 13
+    n_fft: 2048
+    hop_length: 512
+    frame_length: 2048
+  text:
+    perplexity_model: "gpt2"  # or path to KenLM model
+    spacy_model: "en_core_web_sm"
+
+# LightGBM Model
+model:
+  lgbm:
+    num_leaves: 31
+    max_depth: -1
+    learning_rate: 0.05
+    n_estimators: 200
+    min_child_samples: 20
+    subsample: 0.8
+    colsample_bytree: 0.8
+    random_state: 42
+  model_path: "model/saved/lgbm_model.pkl"
+  threshold: 0.5
+
+# RAG Configuration
+rag:
+  vector_db: "faiss"  # Options: faiss, chromadb
+  embedding_model: "sentence-transformers/all-MiniLM-L6-v2"
+  index_path: "rag/index"
+  top_k: 5
+  chunk_size: 500
+  chunk_overlap: 50
+
+# LLM Configuration
+llm:
+  provider: "openai"  # Options: openai, gemini
+  model: "gpt-3.5-turbo"  # or "gemini-pro"
+  temperature: 0.3
+  max_tokens: 500
+  api_key_env: "OPENAI_API_KEY"  # Environment variable name
+
+# API Configuration
+api:
+  host: "0.0.0.0"
+  port: 8000
+  max_file_size: 52428800  # 50MB in bytes
+  allowed_origins: ["*"]
+
+# Paths
+paths:
+  data_raw: "data/raw"
+  data_processed: "data/processed"
+  knowledge_base: "rag/knowledge_base"
+  logs: "logs"
